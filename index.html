@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruang Inspirasi — Catatan Pengembangan Diri</title>
+  <meta name="description" content="Kumpulan wawasan singkat tentang kebiasaan baik, komunikasi, pengelolaan waktu, dan pengembangan diri.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Loncat ke konten utama</a>
+
+  <div class="dashboard-shell">
+    <aside class="sidebar" aria-label="Menu utama">
+      <a class="brand" href="#overview" data-view="overview" aria-label="Ruang Inspirasi, ke beranda">
+        <span>Ruang <span class="brand-accent">Inspirasi</span></span>
+        <small>CATATAN &amp; WAWASAN</small>
+      </a>
+      <div class="sidebar-caption">MENU</div>
+      <nav class="side-nav">
+        <a class="nav-link active" href="#overview" data-view="overview" aria-current="page"><span aria-hidden="true">⌂</span> Beranda</a>
+        <a class="nav-link" href="#create" data-view="create"><span aria-hidden="true">＋</span> Buat kiriman</a>
+        <a class="nav-link" href="#posts" data-view="posts"><span aria-hidden="true">▤</span> Daftar kiriman</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <span class="course-tag">D3 TI <span>·</span> Pemrograman Client-Server</span>
+        <div class="status-block" id="status-block" role="status" aria-live="polite">
+          <span class="status-label"><span class="status-dot" id="status-dot"></span><span id="status-text">Menghubungkan…</span></span>
+          <span id="endpoint-text">jsonplaceholder.typicode.com/posts</span>
+        </div>
+      </div>
+    </aside>
+
+  <main id="main-content">
+    <section class="welcome app-view" id="overview" aria-labelledby="page-title">
+      <div class="eyebrow">DASHBOARD / BERANDA</div>
+      <h1 id="page-title">Catatan Pengembangan Diri</h1>
+      <p>Kumpulan wawasan singkat tentang kebiasaan baik, komunikasi, pengelolaan waktu, dan cara berkembang setiap hari.</p>
+      <p class="welcome-note">Mulailah dari satu catatan sederhana hari ini. Setiap ide yang ditulis dapat menjadi pengingat untuk terus belajar dan melangkah lebih baik.</p>
+      <div class="reading-block">
+        <p>Catat pengalaman dan gagasanmu di sini agar setiap langkah kecil dapat menjadi pengingat untuk terus belajar, menghargai proses, dan berkembang.</p>
+      </div>
+      <div class="home-summary"><strong id="overview-count">—</strong><span>kiriman di ruang inspirasi</span></div>
+      <div class="home-actions">
+        <a class="btn primary" href="#create" data-view="create">＋ Buat kiriman</a>
+        <a class="btn ghost" href="#posts" data-view="posts">Lihat daftar kiriman</a>
+      </div>
+    </section>
+    <section class="workspace app-view" id="workspace" aria-label="Dasbor pengelolaan kiriman" hidden>
+    <section class="panel" id="create-view" aria-labelledby="create-heading" hidden>
+      <div class="panel-head">
+      <h2 id="create-heading">Buat Kiriman Baru</h2>
+        <span class="index-no">POST</span>
+      </div>
+      <form id="create-form">
+        <div class="field">
+          <label for="new-title">Judul</label>
+          <input id="new-title" name="title" type="text" required maxlength="120"
+            placeholder="cth. Catatan rapat client">
+        </div>
+        <div class="field">
+          <label for="new-body">Isi</label>
+          <textarea id="new-body" name="body" required maxlength="500" placeholder="Tulis isi post di sini…"></textarea>
+        </div>
+        <div class="field">
+          <label for="new-user">User ID</label>
+          <input id="new-user" name="userId" type="number" min="1" max="10" value="1" required>
+          <small>JSONPlaceholder punya user 1–10.</small>
+        </div>
+        <div class="btn-row">
+          <button class="btn primary" type="submit"><span aria-hidden="true">＋</span> Buat post</button>
+          <button class="btn ghost" type="reset">Reset</button>
+        </div>
+      </form>
+
+
+      <div class="about-block">
+        Data diambil dari <code>JSONPlaceholder</code>, API publik untuk latihan.
+        Operasi <code>POST</code>, <code>PUT</code>, dan <code>DELETE</code> dijawab
+        sukses oleh server tapi tidak benar-benar tersimpan — perubahan tetap
+        langsung terlihat di tampilan ini (optimistic UI) untuk mendemonstrasikan alur CRUD penuh.
+      </div>
+    </section>
+
+    <section class="panel" id="posts-view" aria-labelledby="list-heading" hidden>
+      <div class="panel-head">
+        <h2 id="list-heading">Semua kiriman</h2>
+        <span class="index-no" id="method-tag">GET <span class="method-dot"></span></span>
+      </div>
+      <div class="toolbar">
+        <input type="search" id="search-input" placeholder="Cari judul atau isi kiriman…" aria-label="Cari kiriman">
+        <button class="btn ghost refresh-btn" id="refresh-btn" type="button"><span aria-hidden="true">↻</span> Muat ulang</button>
+        <span class="count-tag" id="count-tag">0 kiriman</span>
+      </div>
+      <div class="source-select">
+        <div class="field">
+          <label for="filter-user">Filter berdasarkan User ID</label>
+          <select id="filter-user">
+            <option value="">Semua user</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-grid" id="card-grid" aria-live="polite">
+        <div class="loading-state">Memuat data…</div>
+      </div>
+    </section>
+    </section>
+  </main>
+
+  <dialog id="edit-dialog">
+    <div class="panel-head">
+      <h2 id="edit-heading">Ubah Kiriman</h2>
+      <span class="index-no">PUT</span>
+    </div>
+    <form id="edit-form">
+      <input type="hidden" id="edit-id">
+      <div class="field">
+        <label for="edit-title">Judul</label>
+        <input id="edit-title" type="text" required maxlength="120">
+      </div>
+      <div class="field">
+        <label for="edit-body">Isi</label>
+        <textarea id="edit-body" required maxlength="500"></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn primary" type="submit">Simpan (PUT)</button>
+        <button class="btn ghost" type="button" id="cancel-edit">Batal</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast-stack" id="toast-stack" aria-live="assertive"></div>
+
+  <footer>
+    <span>Ruang Inspirasi <span class="footer-dot">·</span> Tugas Praktikum D3 TI</span>
+    <span>HTML5 · CSS3 Flex/Grid · Vanilla JS Fetch API · CRUD (GET / POST / PUT / DELETE)</span>
+  </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
